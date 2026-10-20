@@ -1,0 +1,18 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model AnalyticsDaily {
+  day       DateTime @db.Date
+  country   String   @db.VarChar(2)
+  pageViews Int      @default(0)
+  visits    Int      @default(0)
+  updatedAt DateTime @updatedAt
+
+  @@id([day, country])
+}
