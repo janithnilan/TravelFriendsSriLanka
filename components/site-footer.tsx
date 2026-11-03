@@ -1,8 +1,6 @@
 import Image from "next/image";
 import { siteContact } from "@/lib/site-config";
 import { getPublicVisitorStatistics } from "@/services/visitor-analytics-service";
-import { VisitorStatisticsWidget } from "@/components/visitor-statistics";
-import { analyticsEnabled } from "@/lib/analytics-policy";
 
 function SocialIcon({ name }: { name: "whatsapp" | "facebook" | "youtube" }) {
   if (name === "youtube") {
@@ -124,10 +122,32 @@ export function SiteFooter() {
         </div>
       </div>
 
-      <VisitorStatisticsWidget
-        statistics={statistics}
-        collectionEnabled={analyticsEnabled()}
-      />
+      <div className="footer-community-row">
+        <div className="external-visitor-counter">
+          <a
+            href="https://liveflagcounter.com/stats/ISIcEGNR"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src="https://liveflagcounter.com/c/ISIcEGNR.png"
+              alt="Live visitor counter with country flags"
+              width={624}
+              height={24}
+              loading="lazy"
+              style={{ maxWidth: "100%", height: "auto" }}
+            />
+          </a>
+        </div>
+
+        <section className="footer-reviews" aria-labelledby="footer-reviews-title">
+          <h2 id="footer-reviews-title">Traveler Reviews</h2>
+          <div className="footer-review-stars" aria-label="No ratings yet">
+            <span aria-hidden="true">☆ ☆ ☆ ☆ ☆</span>
+          </div>
+          <p>Reviews coming soon. Be among the first to share your experience.</p>
+        </section>
+      </div>
 
       <p className="image-credits">
         Photography:{" "}

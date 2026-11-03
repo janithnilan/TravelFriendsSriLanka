@@ -15,7 +15,11 @@ let requests = 0;
 
 export async function POST(request: Request) {
   const origin = request.headers.get("origin");
-  if (origin !== new URL(request.url).origin)
+  const allowedOrigins = new Set([
+    "https://travelfriendssrilanka.com",
+    "https://www.travelfriendssrilanka.com",
+  ]);
+  if (!origin || !allowedOrigins.has(origin))
     return Response.json(
       { error: "Same-origin request required" },
       { status: 403, headers: responseHeaders },

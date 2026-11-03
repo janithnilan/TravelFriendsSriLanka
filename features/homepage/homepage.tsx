@@ -1,8 +1,9 @@
 import Image from "next/image";
-import { destinations } from "@/features/homepage/content";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { FeaturedDestinationSearch } from "@/features/homepage/featured-destination-search";
+import { FeaturedDestinationsCarousel } from "@/features/homepage/featured-destinations-carousel";
+import { TravelToolsSection } from "@/features/homepage/travel-tools-section";
 
 export function Homepage() {
   return (
@@ -32,7 +33,7 @@ export function Homepage() {
           <div className="hero-visual">
             <Image
               className="hero-photo"
-              src="/images/galle-fort.jpg"
+              src="/images/galle/galle-fort.jpg"
               alt="The lighthouse and historic ramparts at Galle Fort"
               width={1280}
               height={867}
@@ -80,42 +81,10 @@ export function Homepage() {
             </a>
           </div>
 
-          <div className="destination-grid">
-            {destinations.map((destination, index) => (
-              <article
-                className="destination"
-                id={`destination-${destination.name.toLowerCase()}`}
-                key={destination.name}
-              >
-                <div className="destination-image">
-                  <Image
-                    src={destination.image}
-                    alt={destination.imageAlt}
-                    width={1200}
-                    height={1200}
-                    loading="lazy"
-                  />
-                  <span className="destination-index">0{index + 1}</span>
-                  <span className="destination-open" aria-hidden="true">
-                    -&gt;
-                  </span>
-                </div>
-                <div className="destination-caption">
-                  <div>
-                    <p className="destination-region">{destination.region}</p>
-                    <h3>{destination.name}</h3>
-                    <p className="destination-description">
-                      {destination.landscape}
-                    </p>
-                  </div>
-                  <span className="destination-arrow" aria-hidden="true">
-                    -&gt;
-                  </span>
-                </div>
-              </article>
-            ))}
-          </div>
+          <FeaturedDestinationsCarousel />
         </section>
+
+        <TravelToolsSection />
 
         <section
           className="approach-section"
